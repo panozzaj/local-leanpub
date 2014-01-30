@@ -1,0 +1,54 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+chapter_filenames = File.read('contents.txt').split("\n")
+
+base_dir = '_generated'
+leanpub_dir = File.join base_dir, 'leanpub'
+pandoc_dir = File.join base_dir, 'pandoc'
+
+FileUtils.mkdir_p leanpub_dir
+FileUtils.mkdir_p pandoc_dir
+
+# write Book.txt from contents.txt
+# AP: I'm not sure if this is bulletproof if we rename chapters,
+# but let's try this for now
+unless File.read('Book.txt').split("\n").length == chapter_filenames.length
+  File.open('Book.txt', 'w') do |book|
+    chapter_filenames.each do |chapter_filename|
+      book.puts File.join(leanpub_dir, chapter_filename)
+    end
+  end
+end
+
+# copy over files for image insertion
+chapter_filenames.each do |chapter_filename|
+  FileUtils.cp chapter_filename, leanpub_dir
+end
+
+# copy over modified files for futher pandoc processing
+chapter_filenames.each do |chapter_filename|
+  FileUtils.cp File.join(leanpub_dir, chapter_filename), pandoc_dir
+end
+
+# pandoc post-processing
+chapter_filenames.each do |chapter_filename|
+  File.open(File.join(pandoc_dir, chapter_filename), 'a') do |f|
+    f.puts "\nEND OF PANDOC CHAPTER"
+    f.puts "\n\\pagebreak"
+  end
+end
+
+# stitch the current book into a PDF, sending any errors to the ether
+
+File.open("#{base_dir}/Book.txt", 'w') do |book|
+  chapter_filenames.each do |chapter_filename|
+    book.puts File.join(pandoc_dir, chapter_filename)
+  end
+end
+
+`cat #{base_dir}/Book.txt | xargs pandoc \
+  --smart \
+  --table-of-contents \
+  --output=local-preview.pdf`
