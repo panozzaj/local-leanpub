@@ -14,6 +14,11 @@ differences between Leanpub and Pandoc so that you can easily and quickly
 preview the book contents. You can add your own custom steps to the build
 process to generate or insert images.
 
+Here is an example (local Pandoc on the right, Leanpub preview on the bottom):
+
+![Pandoc Sample](http://ajp-github.s3.amazonaws.com/pandoc%20sample.png)
+![Leanpub Sample](http://ajp-github.s3.amazonaws.com/leanpub%20sample.png)
+
 ## Installation
 
 **If you have done any writing, you want to copy this work somewhere so you
@@ -21,7 +26,10 @@ don't overwrite it**.
 
 You need to have your book set to file mode (which uses Dropbox) to write in
 Markdown locally, which is irreversible (at least at the time of writing.) If
-you are writing locally and using Dropbox, you already have this set up.
+you are writing locally and using Dropbox, you already have this set up. Here
+is what it looks like when finished:
+
+![Correct Settings](http://ajp-github.s3.amazonaws.com/correct%20settings.png)
 
 In your Dropbox folder, move the contents of the manuscript folder into a
 temporary directory, and then clone this repo. Here is an example:
@@ -59,7 +67,8 @@ understand your project structure by creating a new preview there.
 
 ## How book contents are laid out
 
-Leanpub looks at certain files to compile the book in question:
+[Leanpub looks at certain files](https://leanpub.com/help/manual) to compile
+your book:
 
  * `Book.txt` lists all of the chapters of the final book
  * `Sample.txt` lists the chapters in the sample PDF
@@ -67,18 +76,13 @@ Leanpub looks at certain files to compile the book in question:
 We have a file called `contents.txt` that holds the values of the raw materials
 of the book. `./build` does some post-processing to create new files for Pandoc
 and Leanpub to look at. Then it updates `Book.txt` to ensure that Leanpub knows
-where to look for the generated files.
+where to look for the generated files. So if you want to add a new chapter, add
+it to `contents.txt` which will be read by `./build`.
 
 My convention is that the book contents are located in
 `chapter[digit].markdown` files. I like the `.markdown` extension because it
 signals what the contents are and enables syntax highlighting in my text editor
 (Vim). You can always change `contents.txt` if this does not suit you.
-
-## Installing
-
-Clone this repo and put it into your Dropbox folder that Leanpub looks at.
-Then you should be able to run the commands above and see a local preview, and
-publish to Leanpub and have a preview up there.
 
 ## Pandoc vs. Leanpub
 
@@ -89,7 +93,7 @@ many of the same conventions.
 You should still check your book against Leanpub's preview feature before
 publishing, since there are some differences. For example, Leanpub
 automatically inserts page breaks between chapters (depending on your settings)
-while Pandoc needs the explicit `\\pagebreak` command (the scripts here take
+while Pandoc needs the explicit `\pagebreak` command (the scripts here take
 care of this difference.)
 
 ## Disclaimer
@@ -100,3 +104,11 @@ approximate the preview function of Leanpub.
 ## License
 
 This code released under the [MIT License](http://en.wikipedia.org/wiki/MIT_License).
+
+## Appreciation
+
+If you use this for your book and find it useful, please let me know. It makes
+me very happy when someone reaches out! I'd love to know what you are working
+on, as well.
+
+Any issues? Please submit an issue / pull request and I'll take a look at it.
