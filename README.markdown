@@ -9,9 +9,29 @@ preview of my book on [Writing With Vim](https://leanpub.com/vim-for-writers).
 Here is a way to get your own book previews without the need to send your work
 up to Leanpub every time.
 
-The setup in this repo takes care of some of the work of moving files and
-normalizing differences between Leanpub and Pandoc so that you can easily and
-quickly preview the book contents.
+This setup takes care of some of the work of moving files and normalizing
+differences between Leanpub and Pandoc so that you can easily and quickly
+preview the book contents.
+
+## Installation
+
+**If you have done any writing, you want to copy this work somewhere so you
+don't overwrite it**.
+
+You need to have your book set to file mode (which uses Dropbox) to write in
+Markdown locally, which is irreversible (at least at the time of writing.)
+
+In your Dropbox folder, move the contents of the manuscript folder into a
+temporary directory, and then clone this repo. Here is an example:
+
+```
+ $ cd $dropbox/mybook
+ $ mkdir old_manuscript
+ $ mv manuscript/* old_manuscript
+   ... look at these directories to make sure everything looks OK
+ $ git clone https://github.com/panozzaj/local-leanpub.git manuscript
+   ^^^ copies the contents of the repo into the manuscript directory
+```
 
 ## Local previewing
 
