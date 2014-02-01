@@ -14,9 +14,14 @@ differences between Leanpub and Pandoc so that you can easily and quickly
 preview the book contents. You can add your own custom steps to the build
 process to generate or insert images.
 
-Here is an example (local Pandoc on the right, Leanpub preview on the bottom):
+Here is an example (local Pandoc on the top, Leanpub preview on the bottom):
+
+Pandoc:
 
 ![Pandoc Sample](http://ajp-github.s3.amazonaws.com/pandoc%20sample.png)
+
+Leanpub:
+
 ![Leanpub Sample](http://ajp-github.s3.amazonaws.com/leanpub%20sample.png)
 
 ## Installation
