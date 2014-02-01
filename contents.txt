@@ -1,2 +1,4 @@
 chapter1.markdown
+chapter2.markdown
+chapter3.markdown
 appendices.markdown
