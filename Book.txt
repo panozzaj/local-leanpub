@@ -1,2 +1,4 @@
 _generated/leanpub/chapter1.markdown
+_generated/leanpub/chapter2.markdown
+_generated/leanpub/chapter3.markdown
 _generated/leanpub/appendices.markdown
